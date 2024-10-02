@@ -1,0 +1,19 @@
+{
+  "name": "omni-refrigeration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martin-digital-design/omni-refrigeration.git"
+  },
+  "author": "Joel Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martin-digital-design/omni-refrigeration/issues"
+  },
+  "homepage": "https://github.com/martin-digital-design/omni-refrigeration#readme"
+}
