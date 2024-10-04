@@ -51,9 +51,16 @@ function handleNavPosition(navbar) {
 
     function handleScroll(viewport_top) {
         if (viewport_top > navbar_bottom) {
-            navbar.addClass('floating-nav');
+            navbar.css('opacity', '0%');
+            setTimeout(() => {
+                navbar.addClass('floating-nav');
+            }, 250);
         } else {
             navbar.removeClass('floating-nav');
+
+            setTimeout(() => {
+                navbar.css('opacity', '100%');
+            }, 250);
         }
     }
 }
