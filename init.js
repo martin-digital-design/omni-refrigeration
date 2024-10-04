@@ -85,7 +85,7 @@ function handleFAQ(FAQ_list) {
             } else {
                 faq_container.css({
                     height: `${
-                        faq_answer_height + faq_container.outerHeight()
+                        faq_answer_height + faq_container.outerHeight() + 32
                     }px`,
                 });
                 faq_question.addClass('faq-open');
