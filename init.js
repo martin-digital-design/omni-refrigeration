@@ -70,7 +70,9 @@ function handleFAQ(FAQ_list) {
         const faq_question = faq_container.children('[faq="question"]').first();
         const faq_answer = faq_container.children('[faq="answer"]').first();
 
-        const faq_answer_height = faq_answer.outerHeight();
+        const faq_answer_height = faq_answer.height();
+
+        console.log(faq_answer_height);
 
         faq_question.on('click', () => {
             if (faq_question.hasClass('faq-open')) {
