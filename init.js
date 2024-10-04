@@ -65,6 +65,8 @@ function handleFAQ(FAQ_list) {
     //add faq-open classes to both elements on click
 
     FAQ_list.each((index, faq_container) => {
+        faq_container = $(faq_container);
+
         const faq_question = faq_container.children('[faq="question"]').first();
 
         faq_question.on('click', () => {
