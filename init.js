@@ -51,17 +51,9 @@ function handleNavPosition(navbar) {
 
     function handleScroll(viewport_top) {
         if (viewport_top > navbar_bottom) {
-            navbar.css('opacity', '0%');
-            setTimeout(() => {
-                navbar.css('opacity', '100%');
-                navbar.addClass('floating-nav');
-            }, 250);
+            navbar.addClass('floating-nav');
         } else {
-            navbar.css('opacity', '0%');
             navbar.removeClass('floating-nav');
-            setTimeout(() => {
-                navbar.css('opacity', '100%');
-            }, 250);
         }
     }
 }
