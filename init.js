@@ -69,15 +69,15 @@ function handleFAQ(FAQ_list) {
 
         const faq_question = faq_container.children('[faq="question"]').first();
         const faq_answer = faq_container.children('[faq="answer"]').first();
-
         const faq_answer_height = faq_answer.height();
+        const faq_question_height = faq_question.height();
 
-        console.log(faq_answer_height);
+        faq_container.css('height', `${faq_question_height * 1.5}px`);
 
         faq_question.on('click', () => {
             if (faq_question.hasClass('faq-open')) {
                 faq_container.css({
-                    height: '7rem',
+                    height: `${faq_question_height * 1.5}px`,
                 });
                 setTimeout(() => {
                     faq_question.removeClass('faq-open');
@@ -88,7 +88,6 @@ function handleFAQ(FAQ_list) {
                         faq_answer_height * 2 + faq_container.outerHeight()
                     }px`,
                 });
-
                 faq_question.addClass('faq-open');
             }
         });
