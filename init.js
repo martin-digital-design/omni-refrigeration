@@ -68,13 +68,20 @@ function handleFAQ(FAQ_list) {
         faq_container = $(faq_container);
 
         const faq_question = faq_container.children('[faq="question"]').first();
+        const faq_answer = faq_container.children('[faq="answer"]').first();
+
+        const faq_answer_height = faq_answer.outerHeight();
 
         faq_question.on('click', () => {
-            if (faq_container.hasClass('faq-open')) {
-                faq_container.removeClass('faq-open');
+            if (faq_question.hasClass('faq-open')) {
+                faq_container.css({
+                    height: '7rem',
+                });
                 faq_question.removeClass('faq-open');
             } else {
-                faq_container.addClass('faq-open');
+                faq_container.css({
+                    height: `${faq_answer_height}px`,
+                });
                 faq_question.addClass('faq-open');
             }
         });
