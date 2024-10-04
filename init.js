@@ -82,7 +82,7 @@ function handleFAQ(FAQ_list) {
                 faq_question.removeClass('faq-open');
             } else {
                 faq_container.css({
-                    height: `calc(${faq_container.outerHeight()} + ${faq_answer_height} + 5rem)px`,
+                    height: `calc(${faq_answer_height} + 12rem)px`,
                 });
                 faq_question.addClass('faq-open');
             }
