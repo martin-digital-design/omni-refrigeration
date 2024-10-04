@@ -79,11 +79,16 @@ function handleFAQ(FAQ_list) {
                 faq_container.css({
                     height: '7rem',
                 });
-                faq_question.removeClass('faq-open');
+                setTimeout(() => {
+                    faq_question.removeClass('faq-open');
+                }, 250);
             } else {
                 faq_container.css({
-                    height: `calc(${faq_answer_height} + 12rem)px`,
+                    height: `${
+                        faq_answer_height * 2 + faq_container.outerHeight()
+                    }px`,
                 });
+
                 faq_question.addClass('faq-open');
             }
         });
