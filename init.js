@@ -77,7 +77,7 @@ function handleFAQ(FAQ_list) {
         faq_question.on('click', () => {
             if (faq_question.hasClass('faq-open')) {
                 faq_container.css({
-                    height: `${faq_question_height * 1.5}px`,
+                    height: `${faq_question_height * 2}px`,
                 });
                 setTimeout(() => {
                     faq_question.removeClass('faq-open');
@@ -85,7 +85,7 @@ function handleFAQ(FAQ_list) {
             } else {
                 faq_container.css({
                     height: `${
-                        faq_answer_height * 2 + faq_container.outerHeight()
+                        faq_answer_height + faq_container.outerHeight() + 200
                     }px`,
                 });
                 faq_question.addClass('faq-open');
