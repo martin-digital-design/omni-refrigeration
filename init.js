@@ -4,6 +4,7 @@
     const navbar_menu = $('#navbar_menu'),
         navbar = $('#navbar'),
         FAQs = $('[faq="container"]');
+    inputs = $('[md-form-data="input"]');
 
     navbar_menu.length > 0
         ? handleMobileNav(navbar_menu)
@@ -14,6 +15,8 @@
         : console.error('navbar not found');
 
     FAQs.length > 0 ? handleFAQ(FAQs) : console.error('FAQs not found');
+
+    inputs.length > 0 ? handleInputs(inputs) : console.error('No inputs found');
 })();
 
 function handleMobileNav(navbar_menu) {
@@ -92,4 +95,34 @@ function handleFAQ(FAQ_list) {
             }
         });
     });
+}
+
+function handleInputs(inputs) {
+    $(window).on('load', () => {
+        inputs.each((index, input) => {
+            input = $(input);
+            const label = input.siblings('label[md-form-data="label"]');
+
+            if (input.val().length > 0) {
+                shrinkInput(label);
+            }
+
+            input.on('focusin', () => {
+                shrinkInput(label);
+            });
+
+            input.on('focusout', () => {
+                if (input.val().length > 0) return;
+                growInput(label);
+            });
+        });
+    });
+
+    function shrinkInput(label) {
+        label.addClass('focussed');
+    }
+
+    function growInput(label) {
+        label.removeClass('focussed');
+    }
 }
