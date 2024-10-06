@@ -143,36 +143,37 @@ function handleSlider(slides) {
     global_interval = newIntervalTransition();
 
     //if correct amount of buttons
-    // const slider_btns = $('[md-slider="btn"] [md-slide-ref]');
+    const slider_btns = $('[md-slider="btn"] [md-slide-ref]');
 
-    // if (slider_btns.length > 0 && slider_btns.length === slides.length) {
-    //     $(slider_btns).on('click', e => {
-    //         let clicked_btn = $(e.target);
-    //         let slide_reference = parseInt(
-    //             clicked_btn.attr('md-slide-ref'),
-    //             10
-    //         );
+    if (slider_btns.length > 0 && slider_btns.length === slides.length) {
+        console.log(slider_btns);
+        // $(slider_btns).on('click', e => {
+        //     let clicked_btn = $(e.target);
+        //     let slide_reference = parseInt(
+        //         clicked_btn.attr('md-slide-ref'),
+        //         10
+        //     );
 
-    //         if (slide_reference === current) return;
+        //     if (slide_reference === current) return;
 
-    //         //stop slider interval
-    //         clearInterval(global_interval);
+        //     //stop slider interval
+        //     clearInterval(global_interval);
 
-    //         //set all non current slides to hidden
-    //         hideNonCurrentSlides(slide_reference);
+        //     //set all non current slides to hidden
+        //     hideNonCurrentSlides(slide_reference);
 
-    //         //show clicked slide
-    //         showSlide(slides[slide_reference]);
+        //     //show clicked slide
+        //     showSlide(slides[slide_reference]);
 
-    //         //create new interval
-    //         global_interval = newIntervalTransition;
+        //     //create new interval
+        //     global_interval = newIntervalTransition;
 
-    //         //set current to new slid ref
-    //         current = slide_reference;
-    //     });
-    // } else {
-    //     console.error('No buttons found // wrong number of buttons');
-    // }
+        //     //set current to new slid ref
+        //     current = slide_reference;
+        // });
+    } else {
+        console.error('No buttons found // wrong number of buttons');
+    }
 
     function newIntervalTransition() {
         return setInterval(() => {
