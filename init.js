@@ -278,7 +278,7 @@ function handleWheel() {
     gsap.to(wheel, {
         rotation: -360,
         ease: 'none',
-        duration: 30,
+        duration: 60,
         repeat: -1,
     });
 }
