@@ -16,7 +16,7 @@
         ? handleNavPosition(navbar)
         : console.error('navbar not found');
 
-    FAQs.length > 0 ? handleFAQ(FAQs) : console.error('FAQs not found');
+    FAQs.length > 0 ? handleDropdown(FAQs) : console.error('FAQs not found');
 
     inputs.length > 0 ? handleInputs(inputs) : console.error('No inputs found');
 
@@ -69,7 +69,7 @@ function handleNavPosition(navbar) {
     }
 }
 
-function handleFAQ(FAQ_list) {
+function handleDropdown(FAQ_list) {
     //loop through each FAQ container
     //Get child nodes: faq=question
     //add click event to question
@@ -83,12 +83,14 @@ function handleFAQ(FAQ_list) {
         const faq_answer_height = faq_answer.height();
         const faq_question_height = faq_question.height();
 
+        const dropdown_padding = $(window).width() > 478 ? 64 : 48;
+
         faq_container.css('height', `${faq_question_height + 64}px`);
 
         faq_question.on('click', () => {
             if (faq_question.hasClass('faq-open')) {
                 faq_container.css({
-                    height: `${faq_question_height + 64}px`,
+                    height: `${faq_question_height + dropdown_padding}px`,
                 });
                 setTimeout(() => {
                     faq_question.removeClass('faq-open');
@@ -96,7 +98,9 @@ function handleFAQ(FAQ_list) {
             } else {
                 faq_container.css({
                     height: `${
-                        faq_answer_height + faq_container.outerHeight() + 32
+                        faq_answer_height +
+                        faq_container.outerHeight() +
+                        dropdown_padding / 2
                     }px`,
                 });
                 faq_question.addClass('faq-open');
