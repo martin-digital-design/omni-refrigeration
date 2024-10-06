@@ -16,7 +16,11 @@
         ? handleNavPosition(navbar)
         : console.error('navbar not found');
 
-    FAQs.length > 0 ? handleDropdown(FAQs) : console.error('FAQs not found');
+    FAQs.length > 0
+        ? $(window).on('resize', () => {
+              handleDropdown(FAQs);
+          })
+        : console.error('FAQs not found');
 
     inputs.length > 0 ? handleInputs(inputs) : console.error('No inputs found');
 
@@ -74,6 +78,7 @@ function handleDropdown(FAQ_list) {
     //Get child nodes: faq=question
     //add click event to question
     //add faq-open classes to both elements on click
+    let current_dropdown;
 
     FAQ_list.each((index, faq_container) => {
         faq_container = $(faq_container);
