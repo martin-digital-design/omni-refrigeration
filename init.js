@@ -157,8 +157,10 @@ function handleSlider(slides) {
     $(slider_btns).each((index, element) => {
         $(element).on('click', event => {
             let clicked_btn = $(element);
-            let slide_reference = clicked_btn.attr('md-slide-ref');
-
+            let slide_reference = parseInt(
+                clicked_btn.attr('md-slide-ref'),
+                10
+            );
             console.log(clicked_btn);
             console.log('ref: ', slide_reference);
             console.log('current: ', current);
