@@ -16,11 +16,7 @@
         ? handleNavPosition(navbar)
         : console.error('navbar not found');
 
-    FAQs.length > 0
-        ? $(window).on('resize', () => {
-              handleDropdown(FAQs);
-          })
-        : console.error('FAQs not found');
+    FAQs.length > 0 ? handleDropdown(FAQs) : console.error('FAQs not found');
 
     inputs.length > 0 ? handleInputs(inputs) : console.error('No inputs found');
 
