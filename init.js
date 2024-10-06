@@ -137,7 +137,9 @@ function handleSlider(slides) {
 
     let current = 0;
 
-    slides[current].removeClass('hidden');
+    console.log(slides[current]);
+
+    $(slides[current]).removeClass('hidden');
 
     const load_interval = setInterval(() => {
         slides[current].addClass('hidden');
