@@ -171,14 +171,16 @@ function handleSlider(slides) {
             //stop slider interval
             clearInterval(global_interval);
 
-            // //set all non current slides to hidden
-            // hideNonCurrentSlides(slide_reference);
+            //set all non current slides to hidden
+            hideNonCurrentSlides(slide_reference);
 
-            // //show clicked slide
-            // showSlide(slides[slide_reference]);
+            //remove current btn selection
+            $(slider_btns[current]).removeClass('current');
+
+            //show clicked slide and new btn selection
+            showSlide(slides[slide_reference], slider_btns[slide_reference]);
 
             //set current to new slid ref
-
             current = slide_reference;
 
             //create new interval
