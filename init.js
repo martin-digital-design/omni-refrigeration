@@ -237,12 +237,12 @@ function handleSlider(slides) {
 function handleWheel() {
     gsap.registerPlugin(Draggable);
 
-    let wheel = document.querySelectorAll('.wheel'),
+    let wheel = document.querySelector('.wheel'),
         images = gsap.utils.toArray('.wheel-card');
 
     console.log('wheel');
     console.log(wheel);
-    console.log('wheel');
+    console.log('Images');
     console.log(images);
 
     console.log(wheel.offsetWidth);
