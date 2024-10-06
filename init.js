@@ -162,11 +162,16 @@ function handleSlider(slides) {
             console.log(clicked_btn);
             console.log(slide_reference);
 
-            if (slide_reference === current) return;
+            if (slide_reference === current) {
+                console.error('Same selection');
+                return;
+            }
             if (slide_reference === undefined || slide_reference === null) {
                 console.error('Btn slide ref error');
                 return;
             }
+
+            console.log('Function running');
 
             //stop slider interval
             clearInterval(global_interval);
