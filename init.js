@@ -5,7 +5,8 @@
         navbar = $('#navbar'),
         FAQs = $('[faq="container"]'),
         inputs = $('[md-form-data="input"]'),
-        slider_images = $('[md-slider="img"]');
+        slider_images = $('[md-slider="img"]'),
+        wheel = $('.wheel');
 
     navbar_menu.length > 0
         ? handleMobileNav(navbar_menu)
@@ -23,7 +24,7 @@
         ? handleSlider(slider_images)
         : console.error('No slider images found');
 
-    handleWheel();
+    wheel.length > 0 ? handleWheel() : console.error('.wheel not found');
 })();
 
 function handleMobileNav(navbar_menu) {
@@ -234,21 +235,13 @@ function handleSlider(slides) {
     }
 }
 
-function handleWheel() {
+function handleWheel(wheel) {
     gsap.registerPlugin(Draggable);
 
-    let wheel = document.querySelector('.wheel'),
-        images = gsap.utils.toArray('.wheel-card');
-
-    console.log('wheel');
-    console.log(wheel);
-    console.log('Images');
-    console.log(images);
-
-    console.log(wheel.offsetWidth);
+    let images = gsap.utils.toArray('.wheel-card');
 
     function setup() {
-        let radius = wheel.offsetWidth / 2,
+        let radius = wheel.width() / 2,
             center = radius,
             slice = 360 / images.length,
             DEG2RAD = Math.PI / 180;
@@ -263,19 +256,19 @@ function handleWheel() {
 
     setup();
 
-    window.addEventListener('resize', setup);
+    $(window).on('resize', setup);
 
-    Draggable.create(wheel, {
+    Draggable.create(wheel[0], {
         allowContextMenu: true,
         type: 'rotation',
-        trigger: wheel,
+        trigger: wheel[0],
         inertia: true,
         snap: {
             rotation: gsap.utils.snap(360 / images.length),
         },
     });
 
-    gsap.to(wheel, {
+    gsap.to(wheel[0], {
         rotation: -360,
         ease: 'none',
         duration: 60,
