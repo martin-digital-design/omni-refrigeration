@@ -143,7 +143,7 @@ function handleSlider(slides) {
     global_interval = newIntervalTransition();
 
     //if correct amount of buttons
-    const slider_btns = $('[md-slider="btn"] [md-slide-ref]');
+    const slider_btns = $('[md-slider="btn"]');
 
     if (slider_btns.length > 0 && slider_btns.length === slides.length) {
         console.log(slider_btns);
