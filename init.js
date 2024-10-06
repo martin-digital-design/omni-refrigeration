@@ -173,11 +173,11 @@ function handleSlider(slides) {
         // //show clicked slide
         // showSlide(slides[slide_reference]);
 
-        // //create new interval
-        // global_interval = newIntervalTransition;
+        //set current to new slid ref
+        current = slide_reference;
 
-        // //set current to new slid ref
-        // current = slide_reference;
+        //create new interval
+        global_interval = newIntervalTransition();
     });
 
     function newIntervalTransition() {
