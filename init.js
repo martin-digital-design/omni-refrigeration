@@ -3,8 +3,9 @@
 
     const navbar_menu = $('#navbar-menu'),
         navbar = $('#navbar'),
-        FAQs = $('[faq="container"]');
-    inputs = $('[md-form-data="input"]');
+        FAQs = $('[faq="container"]'),
+        inputs = $('[md-form-data="input"]'),
+        slider_images = $('[md-slider="img"');
 
     navbar_menu.length > 0
         ? handleMobileNav(navbar_menu)
@@ -17,6 +18,10 @@
     FAQs.length > 0 ? handleFAQ(FAQs) : console.error('FAQs not found');
 
     inputs.length > 0 ? handleInputs(inputs) : console.error('No inputs found');
+
+    slider_images.length > 0
+        ? handleSlider(slider_images)
+        : console.error('No slider images found');
 })();
 
 function handleMobileNav(navbar_menu) {
@@ -125,4 +130,20 @@ function handleInputs(inputs) {
     function growInput(label) {
         label.removeClass('focussed');
     }
+}
+
+function handleSlider(slides) {
+    console.log(slides);
+
+    let current = 0;
+
+    slides[current].removeClass('hidden');
+
+    const load_interval = setInterval(() => {
+        slides[current].addClass('hidden');
+
+        current = (current + 1) % slides.length;
+
+        slides[current].removeClass('hidden');
+    }, 5000);
 }
