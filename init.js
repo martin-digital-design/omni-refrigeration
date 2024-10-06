@@ -143,10 +143,11 @@ function handleSlider(slides) {
     global_interval = newIntervalTransition();
 
     //if correct amount of buttons
-    const slider_btns = $('[md-slider="btn"]');
+    const slider_btns = $('[md-slide-ref]');
 
     if (slider_btns.length > 0 && slider_btns.length === slides.length) {
         console.log(slider_btns);
+
         // $(slider_btns).on('click', e => {
         //     let clicked_btn = $(e.target);
         //     let slide_reference = parseInt(
