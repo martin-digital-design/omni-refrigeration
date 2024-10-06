@@ -237,13 +237,11 @@ function handleSlider(slides) {
 function handleWheel() {
     gsap.registerPlugin(Draggable);
 
-    let wheel = $('.wheel'),
-        images = gsap.utils.toArray('.wheel-card');
-
-    console.log('wheel');
-    console.log(wheel);
-    console.log('images');
-    console.log(images);
+    let wheel = document.querySelector('.wheel'),
+        images = gsap.utils.toArray('.wheel__card'),
+        cards = gsap.utils.toArray('.wheel__card'),
+        header = document.querySelector('.header'),
+        currentCard; // keep track of last clicked card so we can put it back
 
     function setup() {
         let radius = wheel.offsetWidth / 2,
