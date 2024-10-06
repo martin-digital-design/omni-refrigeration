@@ -274,4 +274,10 @@ function handleWheel() {
             rotation: gsap.utils.snap(360 / images.length),
         },
     });
+
+    gsap.to(wheel, {
+        rotation: -360,
+        ease: 'none',
+        duration: images.length,
+    });
 }
