@@ -5,7 +5,7 @@
         navbar = $('#navbar'),
         FAQs = $('[faq="container"]'),
         inputs = $('[md-form-data="input"]'),
-        slider_images = $('[md-slider="img"');
+        slider_images = $('[md-slider="img"]');
 
     navbar_menu.length > 0
         ? handleMobileNav(navbar_menu)
@@ -134,23 +134,65 @@ function handleInputs(inputs) {
 
 function handleSlider(slides) {
     let current = 0;
+    let global_interval;
 
     //set all slides to hidden except from current slide
-    let non_current_slides = slides.filter(
-        (index, element) => index != current
-    );
+    hideNonCurrentSlides(current);
 
-    $(non_current_slides).css({ opacity: '0%' });
+    //set intial interval
+    global_interval = newIntervalTransition();
 
-    const load_interval = setInterval(() => {
-        //Hide current slide
-        hideSlide(slides[current]);
+    //if correct amount of buttons
+    // const slider_btns = $('[md-slider="btn"] [md-slide-ref]');
 
-        current = (current + 1) % slides.length;
+    // if (slider_btns.length > 0 && slider_btns.length === slides.length) {
+    //     $(slider_btns).on('click', e => {
+    //         let clicked_btn = $(e.target);
+    //         let slide_reference = parseInt(
+    //             clicked_btn.attr('md-slide-ref'),
+    //             10
+    //         );
 
-        //show new slide
-        showSlide(slides[current]);
-    }, 5000);
+    //         if (slide_reference === current) return;
+
+    //         //stop slider interval
+    //         clearInterval(global_interval);
+
+    //         //set all non current slides to hidden
+    //         hideNonCurrentSlides(slide_reference);
+
+    //         //show clicked slide
+    //         showSlide(slides[slide_reference]);
+
+    //         //create new interval
+    //         global_interval = newIntervalTransition;
+
+    //         //set current to new slid ref
+    //         current = slide_reference;
+    //     });
+    // } else {
+    //     console.error('No buttons found // wrong number of buttons');
+    // }
+
+    function newIntervalTransition() {
+        return setInterval(() => {
+            //Hide current slide
+            hideSlide(slides[current]);
+
+            current = (current + 1) % slides.length;
+
+            //show new slide
+            showSlide(slides[current]);
+        }, 5000);
+    }
+
+    function hideNonCurrentSlides(current_slide_ref) {
+        const non_current_slides = slides.filter(
+            (index, element) => index != current_slide_ref
+        );
+
+        $(non_current_slides).css({ opacity: '0%' });
+    }
 
     function showSlide(slide) {
         slide = $(slide);
