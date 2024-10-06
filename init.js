@@ -137,15 +137,33 @@ function handleSlider(slides) {
 
     let current = 0;
 
-    console.log(slides[current]);
+    let non_current_slides = slides.filter((element, index) => {
+        return index != current;
+    });
 
-    $(slides[current]).removeClass('hidden');
+    console.log(non_current_slides);
+
+    //set all slides to hidden except from current slide
 
     const load_interval = setInterval(() => {
-        slides[current].addClass('hidden');
+        //Hide current slide
+        hideSlide(slides[current]);
 
         current = (current + 1) % slides.length;
 
-        slides[current].removeClass('hidden');
+        //show new slide
+        showSlide(slides[current]);
     }, 5000);
+
+    function showSlide(slide) {
+        slide = $(slide);
+
+        slide.css({ opacity: '100%' });
+    }
+
+    function hideSlide(slide) {
+        slide = $(slide);
+
+        slide.css({ opacity: '0%' });
+    }
 }
