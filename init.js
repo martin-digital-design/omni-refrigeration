@@ -147,38 +147,38 @@ function handleSlider(slides) {
         return;
     }
 
-    // $(slider_btns).on('click', e => {
-    //     let clicked_btn = $(e.target);
-    //     let slide_reference = parseInt(
-    //         clicked_btn.attr('md-slide-ref'),
-    //         10
-    //     );
-
-    //     if (slide_reference === current) return;
-
-    //     //stop slider interval
-    //     clearInterval(global_interval);
-
-    //     //set all non current slides to hidden
-    //     hideNonCurrentSlides(slide_reference);
-
-    //     //show clicked slide
-    //     showSlide(slides[slide_reference]);
-
-    //     //create new interval
-    //     global_interval = newIntervalTransition;
-
-    //     //set current to new slid ref
-    //     current = slide_reference;
-    // });
-
     //set up initial button
     $(slider_btns[current]).addClass('current');
 
     //set intial interval
     global_interval = newIntervalTransition();
 
-    //if correct amount of buttons
+    //once intial setup complete, add event btn event listeners
+    $(slider_btns).on('click', e => {
+        let clicked_btn = $(e.target);
+        let slide_reference = parseInt(clicked_btn.attr('md-slide-ref'), 10);
+
+        if (slide_reference === current) return;
+        if (slide_reference === undefined || slide_reference === null) {
+            console.errror('Btn slide ref error');
+            return;
+        }
+
+        //stop slider interval
+        clearInterval(global_interval);
+
+        // //set all non current slides to hidden
+        // hideNonCurrentSlides(slide_reference);
+
+        // //show clicked slide
+        // showSlide(slides[slide_reference]);
+
+        // //create new interval
+        // global_interval = newIntervalTransition;
+
+        // //set current to new slid ref
+        // current = slide_reference;
+    });
 
     function newIntervalTransition() {
         return setInterval(() => {
