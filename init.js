@@ -158,9 +158,12 @@ function handleSlider(slides) {
         let clicked_btn = $(e.target);
         let slide_reference = clicked_btn.attr('md-slide-ref');
 
+        console.log(clicked_btn);
+        console.log(slide_reference);
+
         if (slide_reference === current) return;
         if (slide_reference === undefined || slide_reference === null) {
-            console.errror('Btn slide ref error');
+            console.error('Btn slide ref error');
             return;
         }
 
@@ -174,7 +177,6 @@ function handleSlider(slides) {
         // showSlide(slides[slide_reference]);
 
         //set current to new slid ref
-        console.log(slide_reference);
 
         current = slide_reference;
 
