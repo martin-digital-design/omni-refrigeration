@@ -155,7 +155,7 @@ function handleSlider(slides) {
 
     //once intial setup complete, add event btn event listeners
     $(slider_btns).each((index, element) => {
-        element.on('click', event => {
+        $(element).on('click', event => {
             let clicked_btn = $(element);
             let slide_reference = clicked_btn.attr('md-slide-ref');
 
