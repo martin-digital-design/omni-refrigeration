@@ -137,7 +137,9 @@ function handleSlider(slides) {
 
     let current = 0;
 
-    let non_current_slides = slides.filter((element, index) => {
+    let non_current_slides = slides.filter((index, element) => {
+        console.log(index);
+
         return index != current;
     });
 
@@ -145,15 +147,15 @@ function handleSlider(slides) {
 
     //set all slides to hidden except from current slide
 
-    const load_interval = setInterval(() => {
-        //Hide current slide
-        hideSlide(slides[current]);
+    // const load_interval = setInterval(() => {
+    //     //Hide current slide
+    //     hideSlide(slides[current]);
 
-        current = (current + 1) % slides.length;
+    //     current = (current + 1) % slides.length;
 
-        //show new slide
-        showSlide(slides[current]);
-    }, 5000);
+    //     //show new slide
+    //     showSlide(slides[current]);
+    // }, 5000);
 
     function showSlide(slide) {
         slide = $(slide);
