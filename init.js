@@ -1,7 +1,7 @@
 (() => {
     console.log('Package running... | Martin Digital :)');
 
-    const navbar_menu = $('#navbar_menu'),
+    const navbar_menu = $('#navbar-menu'),
         navbar = $('#navbar'),
         FAQs = $('[faq="container"]');
     inputs = $('[md-form-data="input"]');
