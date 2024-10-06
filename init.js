@@ -162,6 +162,9 @@ function handleSlider(slides) {
             console.log(clicked_btn);
             console.log('ref: ', slide_reference);
             console.log('current: ', current);
+            console.log('ref: ', typeof slide_reference);
+            console.log('current: ', typeof current);
+            console.log(slide_reference === current);
 
             if (slide_reference === current) {
                 console.error('Same selection');
