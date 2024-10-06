@@ -263,7 +263,7 @@ function handleWheel() {
 
     setup();
 
-    // window.addEventListener('resize', setup);
+    window.addEventListener('resize', setup);
 
     // Draggable.create(wheel, {
     //     allowContextMenu: true,
