@@ -240,7 +240,9 @@ function handleWheel() {
     let wheel = $('.wheel'),
         images = gsap.utils.toArray('.wheel-card');
 
+    console.log('wheel');
     console.log(wheel);
+    console.log('images');
     console.log(images);
 
     function setup() {
