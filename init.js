@@ -142,25 +142,25 @@ function handleSlider(slides) {
 
     $(non_current_slides).css({ opacity: '0%' });
 
-    // const load_interval = setInterval(() => {
-    //     //Hide current slide
-    //     hideSlide(slides[current]);
+    const load_interval = setInterval(() => {
+        //Hide current slide
+        hideSlide(slides[current]);
 
-    //     current = (current + 1) % slides.length;
+        current = (current + 1) % slides.length;
 
-    //     //show new slide
-    //     showSlide(slides[current]);
-    // }, 5000);
+        //show new slide
+        showSlide(slides[current]);
+    }, 5000);
 
-    // function showSlide(slide) {
-    //     slide = $(slide);
+    function showSlide(slide) {
+        slide = $(slide);
 
-    //     slide.css({ opacity: '100%' });
-    // }
+        slide.css({ opacity: '100%' });
+    }
 
-    // function hideSlide(slide) {
-    //     slide = $(slide);
+    function hideSlide(slide) {
+        slide = $(slide);
 
-    //     slide.css({ opacity: '0%' });
-    // }
+        slide.css({ opacity: '0%' });
+    }
 }
