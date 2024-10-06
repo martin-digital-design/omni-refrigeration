@@ -133,29 +133,24 @@ function handleInputs(inputs) {
 }
 
 function handleSlider(slides) {
-    console.log(slides);
-
     let current = 0;
 
-    let non_current_slides = slides.filter((index, element) => {
-        console.log(index);
-
-        return index != current;
-    });
-
-    console.log(non_current_slides);
-
     //set all slides to hidden except from current slide
+    let non_current_slides = slides.filter(
+        (index, element) => index != current
+    );
 
-    // const load_interval = setInterval(() => {
-    //     //Hide current slide
-    //     hideSlide(slides[current]);
+    non_current_slides.css({ opacity: '0%' });
 
-    //     current = (current + 1) % slides.length;
+    const load_interval = setInterval(() => {
+        //Hide current slide
+        hideSlide(slides[current]);
 
-    //     //show new slide
-    //     showSlide(slides[current]);
-    // }, 5000);
+        current = (current + 1) % slides.length;
+
+        //show new slide
+        showSlide(slides[current]);
+    }, 5000);
 
     function showSlide(slide) {
         slide = $(slide);
