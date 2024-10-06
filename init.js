@@ -160,7 +160,8 @@ function handleSlider(slides) {
             let slide_reference = clicked_btn.attr('md-slide-ref');
 
             console.log(clicked_btn);
-            console.log(slide_reference);
+            console.log('ref: ', slide_reference);
+            console.log('current: ', current);
 
             if (slide_reference === current) {
                 console.error('Same selection');
