@@ -174,6 +174,8 @@ function handleSlider(slides) {
         // showSlide(slides[slide_reference]);
 
         //set current to new slid ref
+        console.log(slide_reference);
+
         current = slide_reference;
 
         //create new interval
