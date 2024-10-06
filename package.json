@@ -16,5 +16,8 @@
     "bugs": {
         "url": "https://github.com/martin-digital-design/omni-refrigeration/issues"
     },
-    "homepage": "https://github.com/martin-digital-design/omni-refrigeration#readme"
+    "homepage": "https://github.com/martin-digital-design/omni-refrigeration#readme",
+    "dependencies": {
+        "gsap": "^3.12.5"
+    }
 }

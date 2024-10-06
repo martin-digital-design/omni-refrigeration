@@ -22,6 +22,8 @@
     slider_images.length > 0
         ? handleSlider(slider_images)
         : console.error('No slider images found');
+
+    handleWheel();
 })();
 
 function handleMobileNav(navbar_menu) {
@@ -161,12 +163,6 @@ function handleSlider(slides) {
                 clicked_btn.attr('md-slide-ref'),
                 10
             );
-            console.log(clicked_btn);
-            console.log('ref: ', slide_reference);
-            console.log('current: ', current);
-            console.log('ref: ', typeof slide_reference);
-            console.log('current: ', typeof current);
-            console.log(slide_reference === current);
 
             if (slide_reference === current) {
                 console.error('Same selection');
@@ -236,4 +232,42 @@ function handleSlider(slides) {
 
         slide.css({ opacity: '0%' });
     }
+}
+
+function handleWheel() {
+    gsap.registerPlugin(Draggable);
+
+    let wheel = $('.wheel'),
+        images = gsap.utils.toArray('.wheel-card');
+
+    console.log(wheel);
+    console.log(images);
+
+    function setup() {
+        let radius = wheel.offsetWidth / 2,
+            center = radius,
+            slice = 360 / images.length,
+            DEG2RAD = Math.PI / 180;
+        gsap.set(images, {
+            x: i => center + radius * Math.sin(i * slice * DEG2RAD),
+            y: i => center - radius * Math.cos(i * slice * DEG2RAD),
+            rotation: i => i * slice,
+            xPercent: -50,
+            yPercent: -50,
+        });
+    }
+
+    setup();
+
+    // window.addEventListener('resize', setup);
+
+    // Draggable.create(wheel, {
+    //     allowContextMenu: true,
+    //     type: 'rotation',
+    //     trigger: wheel,
+    //     inertia: true,
+    //     snap: {
+    //         rotation: gsap.utils.snap(360 / images.length),
+    //     },
+    // });
 }
