@@ -100,7 +100,7 @@ function handleDropdown(FAQ_list) {
                     height: `${
                         faq_answer_height +
                         faq_container.outerHeight() +
-                        dropdown_padding / 2
+                        dropdown_padding
                     }px`,
                 });
                 faq_question.addClass('faq-open');
