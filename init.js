@@ -154,34 +154,36 @@ function handleSlider(slides) {
     global_interval = newIntervalTransition();
 
     //once intial setup complete, add event btn event listeners
-    $(slider_btns).on('click', e => {
-        let clicked_btn = $(this);
-        let slide_reference = clicked_btn.attr('md-slide-ref');
+    $(slider_btns).each((index, element) => {
+        element.on('click', event => {
+            let clicked_btn = $(element);
+            let slide_reference = clicked_btn.attr('md-slide-ref');
 
-        console.log(clicked_btn);
-        console.log(slide_reference);
+            console.log(clicked_btn);
+            console.log(slide_reference);
 
-        if (slide_reference === current) return;
-        if (slide_reference === undefined || slide_reference === null) {
-            console.error('Btn slide ref error');
-            return;
-        }
+            if (slide_reference === current) return;
+            if (slide_reference === undefined || slide_reference === null) {
+                console.error('Btn slide ref error');
+                return;
+            }
 
-        //stop slider interval
-        clearInterval(global_interval);
+            //stop slider interval
+            clearInterval(global_interval);
 
-        // //set all non current slides to hidden
-        // hideNonCurrentSlides(slide_reference);
+            // //set all non current slides to hidden
+            // hideNonCurrentSlides(slide_reference);
 
-        // //show clicked slide
-        // showSlide(slides[slide_reference]);
+            // //show clicked slide
+            // showSlide(slides[slide_reference]);
 
-        //set current to new slid ref
+            //set current to new slid ref
 
-        current = slide_reference;
+            current = slide_reference;
 
-        //create new interval
-        global_interval = newIntervalTransition();
+            //create new interval
+            global_interval = newIntervalTransition();
+        });
     });
 
     function newIntervalTransition() {
