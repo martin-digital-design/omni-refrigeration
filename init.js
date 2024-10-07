@@ -213,7 +213,7 @@ function handleSlider(slides) {
 
             //show new slide
             showSlide(slides[current], slider_btns[current]);
-        }, 5000);
+        }, 2000);
     }
 
     function hideNonCurrentSlides(current_slide_ref) {
