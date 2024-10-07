@@ -110,6 +110,8 @@ function handleDropdown(FAQ_list) {
 
     function setInitialHeight() {
         FAQ_list.each((index, faq_container) => {
+            faq_container = $(faq_container);
+
             const faq_question = faq_container
                 .children('[faq="question"]')
                 .first();
