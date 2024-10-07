@@ -74,7 +74,9 @@ function handleDropdown(FAQ_list) {
     //Get child nodes: faq=question
     //add click event to question
     //add faq-open classes to both elements on click
-    let current_dropdown;
+
+    $(window).on('load', setInitialHeight);
+    $(window).on('resize', setInitialHeight);
 
     FAQ_list.each((index, faq_container) => {
         faq_container = $(faq_container);
@@ -83,13 +85,7 @@ function handleDropdown(FAQ_list) {
         const faq_answer = faq_container.children('[faq="answer"]').first();
         const faq_answer_height = faq_answer.height();
         const faq_question_height = faq_question.height();
-
         const dropdown_padding = $(window).width() > 478 ? 64 : 48;
-
-        faq_container.css(
-            'height',
-            `${faq_question_height + dropdown_padding}px`
-        );
 
         faq_question.on('click', () => {
             if (faq_question.hasClass('faq-open')) {
@@ -111,6 +107,21 @@ function handleDropdown(FAQ_list) {
             }
         });
     });
+
+    function setInitialHeight() {
+        FAQ_list.each((index, faq_container) => {
+            const faq_question = faq_container
+                .children('[faq="question"]')
+                .first();
+            const faq_question_height = faq_question.height();
+            const dropdown_padding = $(window).width() > 478 ? 64 : 48;
+
+            faq_container.css(
+                'height',
+                `${faq_question_height + dropdown_padding}px`
+            );
+        });
+    }
 }
 
 function handleInputs(inputs) {
@@ -213,7 +224,7 @@ function handleSlider(slides) {
 
             //show new slide
             showSlide(slides[current], slider_btns[current]);
-        }, 2000);
+        }, 3500);
     }
 
     function hideNonCurrentSlides(current_slide_ref) {
