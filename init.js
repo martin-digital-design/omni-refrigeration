@@ -86,7 +86,10 @@ function handleDropdown(FAQ_list) {
 
         const dropdown_padding = $(window).width() > 478 ? 64 : 48;
 
-        faq_container.css('height', `${faq_question_height + 64}px`);
+        faq_container.css(
+            'height',
+            `${faq_question_height + dropdown_padding}px`
+        );
 
         faq_question.on('click', () => {
             if (faq_question.hasClass('faq-open')) {
