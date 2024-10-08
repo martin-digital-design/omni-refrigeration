@@ -231,32 +231,32 @@ function handleSlider(containers) {
 
                 console.log('Container: ', container);
 
-                //stop slider interval
-                clearInterval(current_slide_info.global_interval);
+                // stop slider interval
+                // clearInterval(current_slide_info.global_interval);
 
-                //set all non current slides to hidden
+                // //set all non current slides to hidden
                 // hideNonCurrentSlides(slide_reference, slider_slides);
 
-                //remove current btn selection
-                $(slider_buttons[current_slide_info.current]).removeClass(
-                    'current'
-                );
+                // //remove current btn selection
+                // $(slider_buttons[current_slide_info.current]).removeClass(
+                //     'current'
+                // );
 
-                //show clicked slide and new btn selection
-                showSlide(
-                    slider_slides[slide_reference],
-                    slider_buttons[slide_reference]
-                );
+                // //show clicked slide and new btn selection
+                // showSlide(
+                //     slider_slides[slide_reference],
+                //     slider_buttons[slide_reference]
+                // );
 
-                //set current to new slid ref
-                current_slide_info.current = slide_reference;
+                // //set current to new slid ref
+                // current_slide_info.current = slide_reference;
 
-                //create new interval
-                current_slide_info.global_interval = newIntervalTransition(
-                    slider_slides,
-                    slider_buttons,
-                    current_slide_info
-                );
+                // //create new interval
+                // current_slide_info.global_interval = newIntervalTransition(
+                //     slider_slides,
+                //     slider_buttons,
+                //     current_slide_info
+                // );
             });
         });
     });
