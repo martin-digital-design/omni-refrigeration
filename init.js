@@ -200,47 +200,51 @@ function handleSlider(containers) {
         );
 
         //once intial setup complete, add event btn event listeners
-        // $(slider_btns).each((index, element) => {
-        //     $(element).on('click', event => {
-        //         let clicked_btn = $(element);
-        //         let slide_reference = parseInt(
-        //             clicked_btn.attr('md-slide-ref'),
-        //             10
-        //         );
+        $(slider_buttons).each((index, button) => {
+            $(button).on('click', event => {
+                let clicked_btn = $(button);
+                let slide_reference = parseInt(
+                    clicked_btn.attr('md-slide-ref'),
+                    10
+                );
 
-        //         if (slide_reference === current) {
-        //             console.error('Same selection');
-        //             return;
-        //         }
-        //         if (slide_reference === undefined || slide_reference === null) {
-        //             console.error('Btn slide ref error');
-        //             return;
-        //         }
+                if (slide_reference === current_slide_info.current) {
+                    console.error('Same selection');
+                    return;
+                }
+                if (slide_reference === undefined || slide_reference === null) {
+                    console.error('Btn slide ref error');
+                    return;
+                }
 
-        //         console.log('Function running');
+                //stop slider interval
+                clearInterval(current_slide_info.global_interval);
 
-        //         //stop slider interval
-        //         clearInterval(global_interval);
+                //set all non current slides to hidden
+                hideNonCurrentSlides(slide_reference, slider_slides);
 
-        //         //set all non current slides to hidden
-        //         hideNonCurrentSlides(slide_reference);
+                //remove current btn selection
+                $(slider_buttons[current_slide_info.current]).removeClass(
+                    'current'
+                );
 
-        //         //remove current btn selection
-        //         $(slider_btns[current]).removeClass('current');
+                //show clicked slide and new btn selection
+                showSlide(
+                    slider_slides[slide_reference],
+                    slider_buttons[slide_reference]
+                );
 
-        //         //show clicked slide and new btn selection
-        //         showSlide(
-        //             slides[slide_reference],
-        //             slider_btns[slide_reference]
-        //         );
+                //set current to new slid ref
+                current_slide_info.current = slide_reference;
 
-        //         //set current to new slid ref
-        //         current = slide_reference;
-
-        //         //create new interval
-        //         global_interval = newIntervalTransition();
-        //     });
-        // });
+                //create new interval
+                current_slide_info.global_interval = newIntervalTransition(
+                    slider_slides,
+                    slider_buttons,
+                    current_slide_info
+                );
+            });
+        });
     });
 
     function newIntervalTransition(
