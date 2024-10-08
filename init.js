@@ -167,7 +167,6 @@ function handleSlider(containers) {
     //get containers
     //Loop through container and get all images and buttons within the container (children)
     //repeat process below
-    console.log('Containers: ', containers);
 
     containers.each((index, container) => {
         container = $(container);
@@ -175,11 +174,6 @@ function handleSlider(containers) {
         slider_slides = container.find('[md-slider="slide"]');
         //get buttons within container
         slider_buttons = container.find('[md-slide-ref]');
-
-        console.log('Index: ', index);
-        console.log('Container: ', container);
-        console.log('Slides: ', slider_slides);
-        console.log('Buttons: ', slider_buttons);
 
         //setup buttons
         if (slider_buttons.length !== slider_slides.length) {
@@ -209,14 +203,11 @@ function handleSlider(containers) {
         $(slider_buttons).each((index, button) => {
             $(button).on('click', event => {
                 let clicked_btn = $(button);
-                console.log('button: ', button);
 
                 let slide_reference = parseInt(
                     clicked_btn.attr('md-slide-ref'),
                     10
                 );
-
-                console.log('reference: ', slide_reference);
 
                 if (slide_reference === current_slide_info.current) {
                     console.error('Same selection');
@@ -227,36 +218,32 @@ function handleSlider(containers) {
                     return;
                 }
 
-                console.log('current_slide_info: ', current_slide_info);
-
-                console.log('Container: ', container);
-
                 // stop slider interval
-                // clearInterval(current_slide_info.global_interval);
+                clearInterval(current_slide_info.global_interval);
 
-                // //set all non current slides to hidden
-                // hideNonCurrentSlides(slide_reference, slider_slides);
+                //set all non current slides to hidden
+                hideNonCurrentSlides(slide_reference, slider_slides);
 
-                // //remove current btn selection
-                // $(slider_buttons[current_slide_info.current]).removeClass(
-                //     'current'
-                // );
+                //remove current btn selection
+                $(slider_buttons[current_slide_info.current]).removeClass(
+                    'current'
+                );
 
-                // //show clicked slide and new btn selection
-                // showSlide(
-                //     slider_slides[slide_reference],
-                //     slider_buttons[slide_reference]
-                // );
+                //show clicked slide and new btn selection
+                showSlide(
+                    slider_slides[slide_reference],
+                    slider_buttons[slide_reference]
+                );
 
-                // //set current to new slid ref
-                // current_slide_info.current = slide_reference;
+                //set current to new slid ref
+                current_slide_info.current = slide_reference;
 
-                // //create new interval
-                // current_slide_info.global_interval = newIntervalTransition(
-                //     slider_slides,
-                //     slider_buttons,
-                //     current_slide_info
-                // );
+                //create new interval
+                current_slide_info.global_interval = newIntervalTransition(
+                    slider_slides,
+                    slider_buttons,
+                    current_slide_info
+                );
             });
         });
     });
