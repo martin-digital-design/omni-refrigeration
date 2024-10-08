@@ -23,7 +23,7 @@
     inputs.length > 0 ? handleInputs(inputs) : console.error('No inputs found');
 
     slider_containers.length > 0
-        ? handleSlider(slider_images)
+        ? handleSlider(slider_containers)
         : console.error('No slider images found');
 
     wheel.length > 0 ? handleWheel() : console.error('.wheel not found');
@@ -174,6 +174,12 @@ function handleSlider(containers) {
         //get buttons within container
         slider_buttons = container.find('[md-slide-ref]');
 
+        //setup buttons
+        if (slider_buttons.length !== slider_slides.length) {
+            console.error('Btns error');
+            return;
+        }
+
         const current_slide_info = {
             current: 0,
             global_interval: null,
@@ -181,12 +187,6 @@ function handleSlider(containers) {
 
         //set all slides to hidden except from current slide
         hideNonCurrentSlides(current_slide_info.current, slider_slides);
-
-        //setup buttons
-        if (slider_buttons.length !== slider_slides.length) {
-            console.error('Btns error');
-            return;
-        }
 
         //set up initial button
         $(slider_buttons[current_slide_info.current]).addClass('current');
