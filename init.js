@@ -229,6 +229,8 @@ function handleSlider(containers) {
 
                 console.log('current_slide_info: ', current_slide_info);
 
+                console.log('Container: ', container);
+
                 //stop slider interval
                 clearInterval(current_slide_info.global_interval);
 
