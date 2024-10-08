@@ -235,7 +235,7 @@ function handleSlider(containers) {
                 clearInterval(current_slide_info.global_interval);
 
                 //set all non current slides to hidden
-                hideNonCurrentSlides(slide_reference, slider_slides);
+                // hideNonCurrentSlides(slide_reference, slider_slides);
 
                 //remove current btn selection
                 $(slider_buttons[current_slide_info.current]).removeClass(
