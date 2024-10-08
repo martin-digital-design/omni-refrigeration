@@ -257,17 +257,10 @@ function handleSlider(slides) {
 }
 
 function handleWheel() {
-    gsap.registerPlugin(Draggable);
+    // gsap.registerPlugin(Draggable);
 
     let wheel = document.querySelector('.wheel'),
         images = gsap.utils.toArray('.wheel-card');
-
-    console.log('wheel');
-    console.log(wheel);
-    console.log('Images');
-    console.log(images);
-
-    console.log(wheel.offsetWidth);
 
     function setup() {
         let radius = wheel.offsetWidth / 2,
@@ -287,15 +280,15 @@ function handleWheel() {
 
     window.addEventListener('resize', setup);
 
-    Draggable.create(wheel, {
-        allowContextMenu: true,
-        type: 'rotation',
-        trigger: wheel,
-        inertia: true,
-        snap: {
-            rotation: gsap.utils.snap(360 / images.length),
-        },
-    });
+    // Draggable.create(wheel, {
+    //     allowContextMenu: true,
+    //     type: 'rotation',
+    //     trigger: wheel,
+    //     inertia: true,
+    //     snap: {
+    //         rotation: gsap.utils.snap(360 / images.length),
+    //     },
+    // });
 
     gsap.to(wheel, {
         rotation: -360,
