@@ -167,6 +167,7 @@ function handleSlider(containers) {
     //get containers
     //Loop through container and get all images and buttons within the container (children)
     //repeat process below
+    console.log('Containers: ', containers);
 
     containers.each((index, container) => {
         container = $(container);
@@ -174,6 +175,11 @@ function handleSlider(containers) {
         slider_slides = container.find('[md-slider="slide"]');
         //get buttons within container
         slider_buttons = container.find('[md-slide-ref]');
+
+        console.log('Index: ', index);
+        console.log('Container: ', container);
+        console.log('Slides: ', slider_slides);
+        console.log('Buttons: ', slider_buttons);
 
         //setup buttons
         if (slider_buttons.length !== slider_slides.length) {
@@ -216,8 +222,6 @@ function handleSlider(containers) {
                     console.error('Btn slide ref error');
                     return;
                 }
-
-                console.log('Function running;');
 
                 //stop slider interval
                 clearInterval(current_slide_info.global_interval);
