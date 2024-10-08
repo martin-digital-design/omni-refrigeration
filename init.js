@@ -45,27 +45,23 @@ function handleNavPosition(navbar) {
     const navbar_top = navbar.offset().top;
     const navbar_bottom = navbar_top + navbar.outerHeight();
     let viewport_top = 0;
-    let ticking = false;
     let floating = false;
 
     $(document).on('scroll', () => {
         viewport_top = $(window).scrollTop();
-
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                handleScroll(viewport_top);
-                ticking = false;
-            });
-
-            ticking = true;
-        }
+        handleScroll(viewport_top);
     });
 
     function handleScroll(viewport_top) {
         if (viewport_top > navbar_bottom) {
             if (!floating) {
-                navbar.addClass('floating-nav');
-                floating = true;
+                navbar.css('opacity', '0%');
+
+                setTimeout(() => {
+                    navbar.css('opacity', '100%');
+                    navbar.addClass('floating-nav');
+                    floating = true;
+                }, 250);
             }
         } else {
             navbar.removeClass('floating-nav');
