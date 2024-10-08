@@ -209,10 +209,14 @@ function handleSlider(containers) {
         $(slider_buttons).each((index, button) => {
             $(button).on('click', event => {
                 let clicked_btn = $(button);
+                console.log('button: ', button);
+
                 let slide_reference = parseInt(
                     clicked_btn.attr('md-slide-ref'),
                     10
                 );
+
+                console.log('reference: ', slide_reference);
 
                 if (slide_reference === current_slide_info.current) {
                     console.error('Same selection');
@@ -222,6 +226,8 @@ function handleSlider(containers) {
                     console.error('Btn slide ref error');
                     return;
                 }
+
+                console.log('current_slide_info: ', current_slide_info);
 
                 //stop slider interval
                 clearInterval(current_slide_info.global_interval);
