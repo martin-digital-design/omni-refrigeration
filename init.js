@@ -46,6 +46,7 @@ function handleNavPosition(navbar) {
     const navbar_bottom = navbar_top + navbar.outerHeight();
     let viewport_top = 0;
     let ticking = false;
+    let floating = false;
 
     $(document).on('scroll', () => {
         viewport_top = $(window).scrollTop();
@@ -62,9 +63,13 @@ function handleNavPosition(navbar) {
 
     function handleScroll(viewport_top) {
         if (viewport_top > navbar_bottom) {
-            navbar.addClass('floating-nav');
+            if (!floating) {
+                navbar.addClass('floating-nav');
+                floating = true;
+            }
         } else {
             navbar.removeClass('floating-nav');
+            floating = false;
         }
     }
 }
@@ -226,7 +231,7 @@ function handleSlider(slides) {
 
             //show new slide
             showSlide(slides[current], slider_btns[current]);
-        }, 3500);
+        }, 3000);
     }
 
     function hideNonCurrentSlides(current_slide_ref) {
