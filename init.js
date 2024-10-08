@@ -169,6 +169,7 @@ function handleSlider(containers) {
     //repeat process below
 
     containers.each((index, container) => {
+        container = $(container);
         //get images within container
         slider_slides = container.find('[md-slider="slide"]');
         //get buttons within container
