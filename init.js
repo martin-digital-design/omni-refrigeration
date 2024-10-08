@@ -3,7 +3,7 @@
 
     const navbar_menu = $('#navbar-menu'),
         navbar = $('#navbar'),
-        dropdowns = $('[faq="container"]'),
+        dropdowns = $('[dropdown="container"]'),
         inputs = $('[md-form-data="input"]'),
         slider_images = $('[md-slider="img"]'),
         wheel = $('.wheel');
@@ -73,59 +73,59 @@ function handleNavPosition(navbar) {
 }
 
 function handleDropdown(dropdown_list) {
-    //loop through each FAQ container
-    //Get child nodes: faq=question
+    //loop through each dropdown container
+    //Get child nodes: dropdown=question
     //add click event to question
-    //add faq-open classes to both elements on click
+    //add dropdown-open classes to both elements on click
 
     $(window).on('load', setInitialHeight);
     $(window).on('resize', setInitialHeight);
 
-    dropdown_list.each((index, faq_container) => {
-        faq_container = $(faq_container);
+    dropdown_list.each((index, dropdown_container) => {
+        dropdown_container = $(dropdown_container);
 
-        const dropdown_heading = faq_container
+        const dropdown_heading = dropdown_container
             .children('[dropdown="heading"]')
             .first();
-        const dropdown_content = faq_container
+        const dropdown_content = dropdown_container
             .children('[dropdown="content"]')
             .first();
         const dropdown_heading_height = dropdown_heading.height();
         const dropdown_content_height = dropdown_content.height();
         const dropdown_padding = $(window).width() > 478 ? 64 : 48;
 
-        faq_question.on('click', () => {
-            if (dropdown_heading.hasClass('faq-open')) {
-                faq_container.css({
-                    height: `${faq_question_height + dropdown_padding}px`,
+        dropdown_heading.on('click', () => {
+            if (dropdown_heading.hasClass('dropdown-open')) {
+                dropdown_container.css({
+                    height: `${dropdown_heading_height + dropdown_padding}px`,
                 });
                 setTimeout(() => {
-                    faq_question.removeClass('faq-open');
+                    dropdown_heading.removeClass('dropdown-open');
                 }, 250);
             } else {
-                faq_container.css({
+                dropdown_container.css({
                     height: `${
-                        faq_answer_height +
-                        faq_container.outerHeight() +
+                        dropdown_content_height +
+                        dropdown_container.outerHeight() +
                         dropdown_padding
                     }px`,
                 });
-                faq_question.addClass('faq-open');
+                dropdown_heading.addClass('dropdown-open');
             }
         });
     });
 
     function setInitialHeight() {
-        dropdown_list.each((index, faq_container) => {
-            faq_container = $(faq_container);
+        dropdown_list.each((index, dropdown_container) => {
+            dropdown_container = $(dropdown_container);
 
-            const dropdown_heading = faq_container
+            const dropdown_heading = dropdown_container
                 .children('[dropdown="heading"]')
                 .first();
             const dropdown_heading_height = dropdown_heading.height();
             const dropdown_padding = $(window).width() > 478 ? 64 : 48;
 
-            faq_container.css(
+            dropdown_container.css(
                 'height',
                 `${dropdown_heading_height + dropdown_padding}px`
             );
