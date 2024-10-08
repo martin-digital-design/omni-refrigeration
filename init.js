@@ -217,6 +217,8 @@ function handleSlider(containers) {
                     return;
                 }
 
+                console.log('Function running;');
+
                 //stop slider interval
                 clearInterval(current_slide_info.global_interval);
 
