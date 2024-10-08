@@ -5,7 +5,7 @@
         navbar = $('#navbar'),
         dropdowns = $('[dropdown="container"]'),
         inputs = $('[md-form-data="input"]'),
-        slider_images = $('[md-slider="img"]'),
+        slider_containers = $('[md-slider="container"]'),
         wheel = $('.wheel');
 
     navbar_menu.length > 0
@@ -22,7 +22,7 @@
 
     inputs.length > 0 ? handleInputs(inputs) : console.error('No inputs found');
 
-    slider_images.length > 0
+    slider_containers.length > 0
         ? handleSlider(slider_images)
         : console.error('No slider images found');
 
@@ -163,81 +163,111 @@ function handleInputs(inputs) {
     }
 }
 
-function handleSlider(slides) {
-    let current = 0;
-    let global_interval;
+function handleSlider(containers) {
+    //get containers
+    //Loop through container and get all images and buttons within the container (children)
+    //repeat process below
 
-    //set all slides to hidden except from current slide
-    hideNonCurrentSlides(current);
+    containers.each((index, container) => {
+        //get images within container
+        slider_slides = container.find('[md-slider="slide"]');
+        //get buttons within container
+        slider_buttons = container.find('[md-slide-ref]');
 
-    //set up buttons
-    const slider_btns = $('[md-slide-ref]');
+        const current_slide_info = {
+            current: 0,
+            global_interval: null,
+        };
 
-    if (slider_btns.length !== slides.length) {
-        console.error('Btns error');
-        return;
-    }
+        //set all slides to hidden except from current slide
+        hideNonCurrentSlides(current_slide_info.current, slider_slides);
 
-    //set up initial button
-    $(slider_btns[current]).addClass('current');
+        //setup buttons
+        if (slider_buttons.length !== slider_slides.length) {
+            console.error('Btns error');
+            return;
+        }
 
-    //set intial interval
-    global_interval = newIntervalTransition();
+        //set up initial button
+        $(slider_buttons[current_slide_info.current]).addClass('current');
 
-    //once intial setup complete, add event btn event listeners
-    $(slider_btns).each((index, element) => {
-        $(element).on('click', event => {
-            let clicked_btn = $(element);
-            let slide_reference = parseInt(
-                clicked_btn.attr('md-slide-ref'),
-                10
-            );
+        //set intial interval
+        current_slide_info.global_interval = newIntervalTransition(
+            slider_slides,
+            slider_buttons,
+            current_slide_info
+        );
 
-            if (slide_reference === current) {
-                console.error('Same selection');
-                return;
-            }
-            if (slide_reference === undefined || slide_reference === null) {
-                console.error('Btn slide ref error');
-                return;
-            }
+        //once intial setup complete, add event btn event listeners
+        // $(slider_btns).each((index, element) => {
+        //     $(element).on('click', event => {
+        //         let clicked_btn = $(element);
+        //         let slide_reference = parseInt(
+        //             clicked_btn.attr('md-slide-ref'),
+        //             10
+        //         );
 
-            console.log('Function running');
+        //         if (slide_reference === current) {
+        //             console.error('Same selection');
+        //             return;
+        //         }
+        //         if (slide_reference === undefined || slide_reference === null) {
+        //             console.error('Btn slide ref error');
+        //             return;
+        //         }
 
-            //stop slider interval
-            clearInterval(global_interval);
+        //         console.log('Function running');
 
-            //set all non current slides to hidden
-            hideNonCurrentSlides(slide_reference);
+        //         //stop slider interval
+        //         clearInterval(global_interval);
 
-            //remove current btn selection
-            $(slider_btns[current]).removeClass('current');
+        //         //set all non current slides to hidden
+        //         hideNonCurrentSlides(slide_reference);
 
-            //show clicked slide and new btn selection
-            showSlide(slides[slide_reference], slider_btns[slide_reference]);
+        //         //remove current btn selection
+        //         $(slider_btns[current]).removeClass('current');
 
-            //set current to new slid ref
-            current = slide_reference;
+        //         //show clicked slide and new btn selection
+        //         showSlide(
+        //             slides[slide_reference],
+        //             slider_btns[slide_reference]
+        //         );
 
-            //create new interval
-            global_interval = newIntervalTransition();
-        });
+        //         //set current to new slid ref
+        //         current = slide_reference;
+
+        //         //create new interval
+        //         global_interval = newIntervalTransition();
+        //     });
+        // });
     });
 
-    function newIntervalTransition() {
+    function newIntervalTransition(
+        slide_array,
+        buttons_array,
+        current_slide_info
+    ) {
         return setInterval(() => {
             //Hide current slide
-            hideSlide(slides[current], slider_btns[current]);
+            hideSlide(
+                slide_array[current_slide_info.current],
+                buttons_array[current_slide_info.current]
+            );
 
-            current = (current + 1) % slides.length;
+            //update current
+            current_slide_info.current =
+                (current_slide_info.current + 1) % slide_array.length;
 
             //show new slide
-            showSlide(slides[current], slider_btns[current]);
+            showSlide(
+                slide_array[current_slide_info.current],
+                buttons_array[current_slide_info.current]
+            );
         }, 3000);
     }
 
-    function hideNonCurrentSlides(current_slide_ref) {
-        const non_current_slides = slides.filter(
+    function hideNonCurrentSlides(current_slide_ref, array) {
+        const non_current_slides = array.filter(
             (index, element) => index != current_slide_ref
         );
 
