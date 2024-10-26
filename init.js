@@ -84,12 +84,8 @@ function handleDropdown(dropdown_list) {
 
     $(window).on('resize', () => {
         if (window_width != $(window).width()) {
-            // setInitialHeight();
-            console.log('Width resized');
-        } else {
-            console.log('height resized');
+            setInitialHeight();
         }
-
         window_width = $(window).width();
     });
 
