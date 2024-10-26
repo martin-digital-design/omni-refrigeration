@@ -79,7 +79,19 @@ function handleDropdown(dropdown_list) {
     //add dropdown-open classes to both elements on click
 
     $(window).on('load', setInitialHeight);
-    $(window).on('resize', setInitialHeight);
+
+    let window_width = $(window).width();
+
+    $(window).on('resize', () => {
+        if (window_width != $(window).width()) {
+            // setInitialHeight();
+            console.log('Width resized');
+        } else {
+            console.log('height resized');
+        }
+
+        window_width = $(window).width();
+    });
 
     dropdown_list.each((index, dropdown_container) => {
         dropdown_container = $(dropdown_container);
