@@ -354,14 +354,14 @@ function handleWheel() {
 function gtagConsent() {
     console.log('Consent function running..');
 
-    //init gtag
+    //init gtag default consents
 
     //event listeners for selection changes so that selection object can be updated
     const selection_object = {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personilization: 'denied',
-        analytics_storage: 'denied',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personilization: 'granted',
+        analytics_storage: 'granted',
     };
 
     const advertising_preference = $('#advertising-preference');
@@ -447,7 +447,7 @@ function gtagConsent() {
     });
 
     selection_button.on('click', () => {
-        accept_selection(selection_object);
+        accept_selection();
     });
     reject_button.on('click', reject_all);
 
@@ -485,7 +485,7 @@ function gtagConsent() {
         //close cookies
     }
 
-    function accept_selection(selection_object) {
+    function accept_selection() {
         console.log('accept selection');
 
         console.log('selection_object', selection_object);
