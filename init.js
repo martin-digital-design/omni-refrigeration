@@ -391,16 +391,16 @@ function gtagConsent() {
 
         if (preference_element.attr('data-slider-state') === 'off') {
             //if data slider off
-            console.log('Turning on now');
-
             preference_slider.addClass('on');
             preference_button.addClass('on');
+
+            preference_element.attr('data-slider-state', 'on');
         } else {
             //if data slider on
-            console.log('Turning off');
-
             preference_slider.removeClass('on');
             preference_button.removeClass('on');
+
+            preference_element.attr('data-slider-state', 'off');
         }
     }
 
