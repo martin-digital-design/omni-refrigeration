@@ -473,6 +473,9 @@ function gtagConsent() {
         //close cookies
         closeElement(cookies_section);
         $('body').css({ overflow: 'visible' });
+
+        //store consent
+        storeConsent();
     }
 
     function accept_all() {
@@ -487,6 +490,9 @@ function gtagConsent() {
         //close cookies
         closeElement(cookies_section);
         $('body').css({ overflow: 'visible' });
+
+        //store consent
+        storeConsent();
     }
 
     function accept_selection() {
@@ -496,5 +502,18 @@ function gtagConsent() {
         //close cookies
         closeElement(cookies_section);
         $('body').css({ overflow: 'visible' });
+
+        //store consent
+        storeConsent();
+    }
+
+    function storeConsent(object) {
+        Date.prototype.addDays = d => {
+            this.setDate(this.getDate() + d);
+            return this;
+        };
+        const date = new Date().addDays(400);
+
+        console.log(date);
     }
 }
