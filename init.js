@@ -366,12 +366,16 @@ function gtagConsent() {
     console.log('analytics_preference', analytics_preference);
 
     advertising_preference.on('click', () => {
-        //logic
+        //CSS
         changeSlider(advertising_preference);
+
+        //Logic
     });
     analytics_preference.on('click', () => {
-        //logic
+        //CSS
         changeSlider(analytics_preference);
+
+        //Logic
     });
 
     function changeSlider(preference_element) {
@@ -406,26 +410,26 @@ function gtagConsent() {
 
     //event listener for btns
     // const accept_button = $('#accept-cookies');
-    // const manage_button = $('#manage-preferences');
+    const manage_button = $('#manage-preferences');
     // const selection_button = $('#accept-selection');
     // const reject_button = $('#reject-button');
-    // const close_preferences_button = $('#close-preferences-button');
-    // const preferences_tab = $('#preferences-tab');
+    const close_preferences_button = $('#close-preferences-button');
+    const preferences_tab = $('#preferences-tab');
 
     // accept_button.on('click', accept_all);
 
-    // manage_button.on('click', () => {
-    //     openElement(preferences_tab);
-    // });
+    manage_button.on('click', () => {
+        openElement(preferences_tab);
+    });
 
     // selection_button.on('click', () => {
     //     accept_selection(selection_object);
     // });
     // reject_button.on('click', reject_all);
 
-    // close_preferences_button.on('click', () => {
-    //     closeElement(preferences_tab);
-    // });
+    close_preferences_button.on('click', () => {
+        closeElement(preferences_tab);
+    });
 
     function openElement(element) {
         element.css({ display: 'flex' });
