@@ -362,8 +362,21 @@ function gtagConsent() {
         analytics_storage: 'granted',
     };
 
-    const advertising_preference = $('#advertising-preference'),
+    //event listeners
+    const accept_button = $('#accept-cookies'),
+        manage_button = $('#manage-preferences'),
+        selection_button = $('#accept-selection'),
+        reject_button = $('#reject-button'),
+        close_preferences_button = $('#close-preferences-button'),
+        preferences_tab = $('#preferences-tab'),
+        cookies_section = $('#cookies-section'),
+        advertising_preference = $('#advertising-preference'),
         analytics_preference = $('#analytics-preference');
+
+    $(window).on('load', () => {
+        $('body').css({ overflow: 'hidden' });
+        openElement(cookies_section);
+    });
 
     advertising_preference.on('click', () => {
         //change CSS and data attributes to desired state from click intent
@@ -380,6 +393,7 @@ function gtagConsent() {
             selection_object.ad_storage = 'denied';
         }
     });
+
     analytics_preference.on('click', () => {
         //CSS
         changeSlider(analytics_preference);
@@ -391,39 +405,6 @@ function gtagConsent() {
             selection_object.analytics_storage = 'denied';
         }
     });
-
-    function changeSlider(preference_element) {
-        const preference_slider = $(
-            preference_element.find('.preference-slider')[0]
-        );
-
-        const preference_button = $(
-            preference_element.find('.preference-btn')[0]
-        );
-
-        if (preference_element.attr('data-slider-state') === 'off') {
-            //if data slider off
-            preference_slider.addClass('on');
-            preference_button.addClass('on');
-
-            preference_element.attr('data-slider-state', 'on');
-        } else {
-            //if data slider on
-            preference_slider.removeClass('on');
-            preference_button.removeClass('on');
-
-            preference_element.attr('data-slider-state', 'off');
-        }
-    }
-
-    //event listener for btns
-    const accept_button = $('#accept-cookies'),
-        manage_button = $('#manage-preferences'),
-        selection_button = $('#accept-selection'),
-        reject_button = $('#reject-button'),
-        close_preferences_button = $('#close-preferences-button'),
-        preferences_tab = $('#preferences-tab'),
-        cookies_section = $('#cookies-section');
 
     accept_button.on('click', accept_all);
 
@@ -456,6 +437,30 @@ function gtagConsent() {
         }, 250);
     }
 
+    function changeSlider(preference_element) {
+        const preference_slider = $(
+            preference_element.find('.preference-slider')[0]
+        );
+
+        const preference_button = $(
+            preference_element.find('.preference-btn')[0]
+        );
+
+        if (preference_element.attr('data-slider-state') === 'off') {
+            //if data slider off
+            preference_slider.addClass('on');
+            preference_button.addClass('on');
+
+            preference_element.attr('data-slider-state', 'on');
+        } else {
+            //if data slider on
+            preference_slider.removeClass('on');
+            preference_button.removeClass('on');
+
+            preference_element.attr('data-slider-state', 'off');
+        }
+    }
+
     function reject_all() {
         //logic
         gtag('consent', 'update', {
@@ -467,6 +472,7 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
+        $('body').css({ overflow: 'visible' });
     }
 
     function accept_all() {
@@ -480,6 +486,7 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
+        $('body').css({ overflow: 'visible' });
     }
 
     function accept_selection() {
@@ -488,5 +495,6 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
+        $('body').css({ overflow: 'visible' });
     }
 }
