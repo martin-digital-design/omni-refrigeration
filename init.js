@@ -335,20 +335,10 @@ function handleWheel() {
 
     window.addEventListener('resize', setup);
 
-    // Draggable.create(wheel, {
-    //     allowContextMenu: true,
-    //     type: 'rotation',
-    //     trigger: wheel,
-    //     inertia: true,
-    //     snap: {
-    //         rotation: gsap.utils.snap(360 / images.length),
-    //     },
-    // });
-
     gsap.to(wheel, {
         rotation: -360,
         ease: 'none',
-        duration: 60,
+        duration: 120,
         repeat: -1,
     });
 }
