@@ -355,6 +355,12 @@ function gtagConsent() {
     console.log('Consent function running..');
 
     //init gtag default consents
+    gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+    });
 
     //event listeners for selection changes so that selection object can be updated
     const selection_object = {
@@ -364,11 +370,8 @@ function gtagConsent() {
         analytics_storage: 'granted',
     };
 
-    const advertising_preference = $('#advertising-preference');
-    const analytics_preference = $('#analytics-preference');
-
-    console.log('advertising_preference', advertising_preference);
-    console.log('analytics_preference', analytics_preference);
+    const advertising_preference = $('#advertising-preference'),
+        analytics_preference = $('#analytics-preference');
 
     advertising_preference.on('click', () => {
         //change CSS and data attributes to desired state from click intent
@@ -376,14 +379,10 @@ function gtagConsent() {
 
         //Logic on desired state
         if (advertising_preference.attr('data-slider-state') === 'on') {
-            console.log('Granting...');
-
             selection_object.ad_user_data = 'granted';
             selection_object.ad_personilization = 'granted';
             selection_object.ad_storage = 'granted';
         } else {
-            console.log('Denying...');
-
             selection_object.ad_user_data = 'denied';
             selection_object.ad_personilization = 'denied';
             selection_object.ad_storage = 'denied';
@@ -395,12 +394,8 @@ function gtagConsent() {
 
         //Logic
         if (analytics_preference.attr('data-slider-state') === 'on') {
-            console.log('Granting...');
-
             selection_object.analytics_storage = 'granted';
         } else {
-            console.log('Denying...');
-
             selection_object.analytics_storage = 'denied';
         }
     });
@@ -410,15 +405,9 @@ function gtagConsent() {
             preference_element.find('.preference-slider')[0]
         );
 
-        console.log('preference_slider', preference_slider);
-
         const preference_button = $(
             preference_element.find('.preference-btn')[0]
         );
-
-        console.log('preference_button', preference_button);
-
-        console.log('data-attr', preference_element.attr('data-slider-state'));
 
         if (preference_element.attr('data-slider-state') === 'off') {
             //if data slider off
@@ -436,13 +425,13 @@ function gtagConsent() {
     }
 
     //event listener for btns
-    const accept_button = $('#accept-cookies');
-    const manage_button = $('#manage-preferences');
-    const selection_button = $('#accept-selection');
-    const reject_button = $('#reject-button');
-    const close_preferences_button = $('#close-preferences-button');
-    const preferences_tab = $('#preferences-tab');
-    // const cookies_section = $('#cookies-section');
+    const accept_button = $('#accept-cookies'),
+        manage_button = $('#manage-preferences'),
+        selection_button = $('#accept-selection'),
+        reject_button = $('#reject-button'),
+        close_preferences_button = $('#close-preferences-button'),
+        preferences_tab = $('#preferences-tab'),
+        cookies_section = $('#cookies-section');
 
     accept_button.on('click', accept_all);
 
@@ -479,14 +468,30 @@ function gtagConsent() {
         console.log('reject all');
 
         //logic
+        gtag('consent', 'update', {
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            ad_storage: 'denied',
+            analytics_storage: 'denied',
+        });
+
         //close cookies
+        closeElement(cookies_section);
     }
 
     function accept_all() {
         console.log('accept all');
 
         //logic
+        gtag('consent', 'update', {
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            ad_storage: 'granted',
+            analytics_storage: 'granted',
+        });
+
         //close cookies
+        closeElement(cookies_section);
     }
 
     function accept_selection() {
@@ -495,6 +500,9 @@ function gtagConsent() {
         console.log('selection_object', selection_object);
 
         //logic
+        gtag('consent', 'update', selection_object);
+
         //close cookies
+        closeElement(cookies_section);
     }
 }
