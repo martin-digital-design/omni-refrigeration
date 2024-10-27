@@ -457,8 +457,6 @@ function gtagConsent() {
     }
 
     function reject_all() {
-        console.log('reject all');
-
         //logic
         gtag('consent', 'update', {
             ad_user_data: 'denied',
@@ -469,13 +467,9 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
-
-        initGtag();
     }
 
     function accept_all() {
-        console.log('accept all');
-
         //logic
         gtag('consent', 'update', {
             ad_user_data: 'granted',
@@ -486,27 +480,13 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
-
-        initGtag();
     }
 
     function accept_selection() {
-        console.log('accept selection');
-
-        console.log('selection_object', selection_object);
-
         //logic
         gtag('consent', 'update', selection_object);
 
         //close cookies
         closeElement(cookies_section);
-
-        initGtag();
-    }
-
-    function initGtag() {
-        gtag('js', new Date());
-        gtag('set', 'developer_id.dZGVlNj', true);
-        gtag('config', 'G-PTFR04NE58');
     }
 }
