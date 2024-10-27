@@ -388,10 +388,14 @@ function gtagConsent() {
 
         if (preference_element.attr('data-slider-state') === 'off') {
             //if data slider off
+            console.log('Turning on');
+
             preference_slider.addClass('on');
             preference_button.addClass('on');
         } else {
             //if data slider on
+            console.log('Turning off');
+
             preference_slider.removeClass('on');
             preference_button.removeClass('on');
         }
