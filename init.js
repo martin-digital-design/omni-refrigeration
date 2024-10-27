@@ -375,12 +375,15 @@ function gtagConsent() {
     });
 
     function changeSlider(preference_element) {
-        const preference_slider =
-            preference_element.find('.preference-slider')[0];
+        const preference_slider = $(
+            preference_element.find('.preference-slider')[0]
+        );
 
         console.log('preference_slider', preference_slider);
 
-        const preference_button = preference_element.find('.preference-btn')[0];
+        const preference_button = $(
+            preference_element.find('.preference-btn')[0]
+        );
 
         console.log('preference_button', preference_button);
 
