@@ -354,19 +354,11 @@ function handleWheel() {
 function gtagConsent() {
     console.log('Consent function running..');
 
-    //init gtag default consents
-    gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-    });
-
     //event listeners for selection changes so that selection object can be updated
     const selection_object = {
         ad_storage: 'granted',
         ad_user_data: 'granted',
-        ad_personilization: 'granted',
+        ad_personalization: 'granted',
         analytics_storage: 'granted',
     };
 
@@ -380,11 +372,11 @@ function gtagConsent() {
         //Logic on desired state
         if (advertising_preference.attr('data-slider-state') === 'on') {
             selection_object.ad_user_data = 'granted';
-            selection_object.ad_personilization = 'granted';
+            selection_object.ad_personalization = 'granted';
             selection_object.ad_storage = 'granted';
         } else {
             selection_object.ad_user_data = 'denied';
-            selection_object.ad_personilization = 'denied';
+            selection_object.ad_personalization = 'denied';
             selection_object.ad_storage = 'denied';
         }
     });
