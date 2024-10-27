@@ -28,6 +28,7 @@
 
     wheel.length > 0 ? handleWheel() : console.error('.wheel not found');
 
+    getConsent();
     gtagConsent();
 })();
 
@@ -462,37 +463,42 @@ function gtagConsent() {
     }
 
     function reject_all() {
-        //logic
-        gtag('consent', 'update', {
+        //object
+        const consent_object = {
             ad_user_data: 'denied',
             ad_personalization: 'denied',
             ad_storage: 'denied',
             analytics_storage: 'denied',
-        });
+        };
+
+        //logic
+        gtag('consent', 'update', consent_object);
 
         //close cookies
         closeElement(cookies_section);
         $('body').css({ overflow: 'visible' });
 
         //store consent
-        storeConsent();
+        storeConsent(consent_object);
     }
 
     function accept_all() {
-        //logic
-        gtag('consent', 'update', {
+        //object
+        const consent_object = {
             ad_user_data: 'granted',
             ad_personalization: 'granted',
             ad_storage: 'granted',
             analytics_storage: 'granted',
-        });
+        };
+        //logic
+        gtag('consent', 'update', consent_object);
 
         //close cookies
         closeElement(cookies_section);
         $('body').css({ overflow: 'visible' });
 
         //store consent
-        storeConsent();
+        storeConsent(consent_object);
     }
 
     function accept_selection() {
@@ -504,16 +510,31 @@ function gtagConsent() {
         $('body').css({ overflow: 'visible' });
 
         //store consent
-        storeConsent();
+        storeConsent(selection_object);
     }
 
     function storeConsent(object) {
-        Date.prototype.addDays = d => {
-            this.setDate(this.getDate() + d);
-            return this;
-        };
-        const date = new Date().addDays(400);
+        let current_date = new Date();
 
-        console.log(date);
+        const expiry_date = current_date.setDate(current_date.getDate() + 400);
+
+        const cookie_consent = JSON.stringify(object);
+
+        document.cookie = `user_consent_data=${cookie_consent}`;
     }
+}
+
+function getConsent() {
+    const document_cookies = document.cookie
+        .split(';')
+        .map(cookie => cookie.split('='))
+        .reduce(
+            (accumulator, [key, value]) => ({
+                ...accumulator,
+                [key.trim()]: decodeURIComponent(value),
+            }),
+            {}
+        );
+
+    console.log(document_cookies);
 }
