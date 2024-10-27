@@ -357,7 +357,12 @@ function gtagConsent() {
     //init gtag
 
     //event listeners for selection changes so that selection object can be updated
-    const selection_object = {};
+    const selection_object = {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personilization: 'denied',
+        analytics_storage: 'denied',
+    };
 
     const advertising_preference = $('#advertising-preference');
     const analytics_preference = $('#analytics-preference');
@@ -366,16 +371,34 @@ function gtagConsent() {
     console.log('analytics_preference', analytics_preference);
 
     advertising_preference.on('click', () => {
-        //CSS
+        //change CSS and data attributes to desired state from click intent
         changeSlider(advertising_preference);
 
-        //Logic
+        //Logic on desired state
+        if (advertising_preference.attr('data-slider-state' === 'on')) {
+            selection_object.ad_user_data = 'granted';
+            selection_object.ad_personilization = 'granted';
+            selection_object.ad_storage = 'granted';
+        } else {
+            selection_object.ad_user_data = 'denied';
+            selection_object.ad_personilization = 'denied';
+            selection_object.ad_storage = 'denied';
+        }
     });
     analytics_preference.on('click', () => {
         //CSS
         changeSlider(analytics_preference);
 
         //Logic
+        if (analytics_preference.attr('data-slider-state' === 'on')) {
+            selection_object.ad_user_data = 'granted';
+            selection_object.ad_personilization = 'granted';
+            selection_object.ad_storage = 'granted';
+        } else {
+            selection_object.ad_user_data = 'denied';
+            selection_object.ad_personilization = 'denied';
+            selection_object.ad_storage = 'denied';
+        }
     });
 
     function changeSlider(preference_element) {
