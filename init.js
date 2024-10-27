@@ -391,7 +391,7 @@ function gtagConsent() {
 
         if (preference_element.attr('data-slider-state') === 'off') {
             //if data slider off
-            console.log('Turning on');
+            console.log('Turning on now');
 
             preference_slider.addClass('on');
             preference_button.addClass('on');
