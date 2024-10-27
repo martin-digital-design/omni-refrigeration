@@ -409,23 +409,24 @@ function gtagConsent() {
     }
 
     //event listener for btns
-    // const accept_button = $('#accept-cookies');
+    const accept_button = $('#accept-cookies');
     const manage_button = $('#manage-preferences');
-    // const selection_button = $('#accept-selection');
-    // const reject_button = $('#reject-button');
+    const selection_button = $('#accept-selection');
+    const reject_button = $('#reject-button');
     const close_preferences_button = $('#close-preferences-button');
     const preferences_tab = $('#preferences-tab');
+    // const cookies_section = $('#cookies-section');
 
-    // accept_button.on('click', accept_all);
+    accept_button.on('click', accept_all);
 
     manage_button.on('click', () => {
         openElement(preferences_tab);
     });
 
-    // selection_button.on('click', () => {
-    //     accept_selection(selection_object);
-    // });
-    // reject_button.on('click', reject_all);
+    selection_button.on('click', () => {
+        accept_selection(selection_object);
+    });
+    reject_button.on('click', reject_all);
 
     close_preferences_button.on('click', () => {
         closeElement(preferences_tab);
@@ -447,9 +448,26 @@ function gtagConsent() {
         }, 250);
     }
 
-    function reject_all() {}
+    function reject_all() {
+        console.log('reject all');
 
-    function accept_all() {}
+        //logic
+        //close cookies
+    }
 
-    function accept_selection(selection_object) {}
+    function accept_all() {
+        console.log('accept all');
+
+        //logic
+        //close cookies
+    }
+
+    function accept_selection(selection_object) {
+        console.log('accept selection');
+
+        console.log('selection_object', selection_object);
+
+        //logic
+        //close cookies
+    }
 }
