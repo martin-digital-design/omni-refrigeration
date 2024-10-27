@@ -397,15 +397,11 @@ function gtagConsent() {
         if (analytics_preference.attr('data-slider-state') === 'on') {
             console.log('Granting...');
 
-            selection_object.ad_user_data = 'granted';
-            selection_object.ad_personilization = 'granted';
-            selection_object.ad_storage = 'granted';
+            selection_object.analytics_storage = 'granted';
         } else {
             console.log('Denying...');
 
-            selection_object.ad_user_data = 'denied';
-            selection_object.ad_personilization = 'denied';
-            selection_object.ad_storage = 'denied';
+            selection_object.analytics_storage = 'denied';
         }
     });
 
