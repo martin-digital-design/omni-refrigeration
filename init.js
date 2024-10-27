@@ -469,6 +469,8 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
+
+        initGtag();
     }
 
     function accept_all() {
@@ -484,6 +486,8 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
+
+        initGtag();
     }
 
     function accept_selection() {
@@ -496,5 +500,13 @@ function gtagConsent() {
 
         //close cookies
         closeElement(cookies_section);
+
+        initGtag();
+    }
+
+    function initGtag() {
+        gtag('js', new Date());
+        gtag('set', 'developer_id.dZGVlNj', true);
+        gtag('config', 'G-PTFR04NE58');
     }
 }
