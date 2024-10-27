@@ -28,8 +28,9 @@
 
     wheel.length > 0 ? handleWheel() : console.error('.wheel not found');
 
-    getConsent();
-    gtagConsent();
+    checkConsent() === false
+        ? gtagConsent()
+        : console.log('Cookie preferences found');
 })();
 
 function handleMobileNav(navbar_menu) {
@@ -524,7 +525,7 @@ function gtagConsent() {
     }
 }
 
-function getConsent() {
+function checkConsent() {
     const document_cookies = document.cookie
         .split(';')
         .map(cookie => cookie.split('='))
@@ -536,5 +537,9 @@ function getConsent() {
             {}
         );
 
-    console.log(document_cookies);
+    if (document_cookies.user_consent_data) {
+        return document_cookies.user_consent_data;
+    } else {
+        return false;
+    }
 }
