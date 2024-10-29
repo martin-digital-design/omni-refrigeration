@@ -533,15 +533,3 @@ function checkConsent() {
         return false;
     }
 }
-
-//dynamic functions
-
-function sendLeadEvent(element) {
-    console.log('Logging lead event...');
-
-    element.on('click', () => {
-        gtag('event', 'conversion_event_submit_lead_form', {
-            event_timeout: 2000,
-        });
-    });
-}
